@@ -107,3 +107,8 @@ create.indexes = [
     create.index.unique_tag_for_data,
     create.index.unique_key_value_pair_for_data,
 ]
+
+insert.data = \
+'''
+INSERT INTO data (bytes) VALUES (?);
+'''
