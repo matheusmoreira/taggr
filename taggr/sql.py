@@ -94,8 +94,16 @@ ON data_tag(data_id, tag_id)
 WHERE data_tag.value IS NULL;
 '''
 
+create.index.unique_key_value_pair_for_data = \
+'''
+CREATE UNIQUE INDEX IF NOT EXISTS unique_key_value_pair_for_data
+ON data_tag(data_id, tag_id, value)
+WHERE data_tag.value IS NOT NULL;
+'''
+
 create.indexes = [
     create.index.unique_root_tags,
     create.index.unique_tag_in_parent,
     create.index.unique_tag_for_data,
+    create.index.unique_key_value_pair_for_data,
 ]
