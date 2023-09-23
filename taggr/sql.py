@@ -62,5 +62,13 @@ create.tables = [
     create.table.tag,
 ]
 
+create.index.unique_root_tags = \
+'''
+CREATE UNIQUE INDEX IF NOT EXISTS unique_root_tags
+ON tag(name)
+WHERE tag.parent_id IS NULL;
+'''
+
 create.indexes = [
+    create.index.unique_root_tags,
 ]
