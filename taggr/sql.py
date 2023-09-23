@@ -119,6 +119,23 @@ select.tags.root = \
 SELECT * FROM tag WHERE tag.parent_id IS NULL;
 '''
 
+select.tags.children = \
+'''
+WITH RECURSIVE children (parent_id, id, name) AS (
+    SELECT tag.parent_id, tag.id, tag.name
+    FROM tag
+    WHERE tag.id = ?
+
+    UNION ALL
+
+    SELECT tag.parent_id, tag.id, tag.name
+    FROM tag
+    JOIN children ON children.id = tag.parent_id
+)
+
+SELECT * FROM children;
+'''
+
 insert.data = \
 '''
 INSERT INTO data (bytes) VALUES (?);
