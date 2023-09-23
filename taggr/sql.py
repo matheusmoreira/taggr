@@ -112,3 +112,8 @@ insert.data = \
 '''
 INSERT INTO data (bytes) VALUES (?);
 '''
+
+insert.tag = \
+'''
+INSERT INTO tag (name, parent_id) VALUES (?, ?);
+'''
