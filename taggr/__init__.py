@@ -40,3 +40,8 @@ class Taggr:
 
     def cursor(self):
         return self.connection.cursor()
+
+    def execute_pragmas(self):
+        cursor = self.cursor()
+        for pragma in sql.pragma.all:
+            cursor.execute(pragma)
