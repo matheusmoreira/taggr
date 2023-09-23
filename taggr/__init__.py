@@ -34,6 +34,7 @@ class Taggr:
 
     def connect(self):
         self.connection = sqlite3.connect(self.database)
+        self.execute_pragmas()
 
     def close(self):
         self.connection.close()
