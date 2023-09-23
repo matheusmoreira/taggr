@@ -117,3 +117,8 @@ insert.tag = \
 '''
 INSERT INTO tag (name, parent_id) VALUES (?, ?);
 '''
+
+insert.data_tag = \
+'''
+INSERT INTO data_tag (data_id, tag_id, value) VALUES (?, ?, ?);
+'''
