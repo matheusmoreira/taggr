@@ -76,3 +76,6 @@ class Taggr:
 
     def select_all_tags(self):
         return self.cursor().execute(sql.select.tags.all)
+
+    def select_root_tags(self):
+        return self.cursor().execute(sql.select.tags.root)
