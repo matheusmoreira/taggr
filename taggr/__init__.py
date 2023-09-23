@@ -46,3 +46,13 @@ class Taggr:
         cursor = self.cursor()
         for pragma in sql.pragma.all:
             cursor.execute(pragma)
+
+    def create_tables(self):
+        cursor = self.cursor()
+        for table in sql.create.tables:
+            cursor.execute(table)
+
+    def create_indexes(self):
+        cursor = self.cursor()
+        for index in sql.create.indexes:
+            cursor.execute(index)
