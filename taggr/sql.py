@@ -57,9 +57,20 @@ CREATE TABLE IF NOT EXISTS tag (
 );
 '''
 
+create.table.data_tag = \
+'''
+CREATE TABLE IF NOT EXISTS data_tag (
+    id INTEGER NOT NULL PRIMARY KEY,
+    data_id INTEGER NOT NULL REFERENCES data(id),
+    tag_id INTEGER NOT NULL REFERENCES tag(id),
+    value
+);
+'''
+
 create.tables = [
     create.table.data,
     create.table.tag,
+    create.table.data_tag,
 ]
 
 create.index.unique_root_tags = \
