@@ -36,3 +36,6 @@ class Taggr:
 
     def close(self):
         self.connection.close()
+
+    def cursor(self):
+        return self.connection.cursor()
