@@ -69,6 +69,14 @@ ON tag(name)
 WHERE tag.parent_id IS NULL;
 '''
 
+create.index.unique_tag_in_parent = \
+'''
+CREATE UNIQUE INDEX IF NOT EXISTS unique_tag_in_parent
+ON tag(name, parent_id)
+WHERE tag.parent_id IS NOT NULL;
+'''
+
 create.indexes = [
     create.index.unique_root_tags,
+    create.index.unique_tag_in_parent,
 ]
