@@ -40,7 +40,16 @@ pragma.all = [
     pragma.foreign_keys,
 ]
 
+create.table.data = \
+'''
+CREATE TABLE IF NOT EXISTS data (
+    id INTEGER NOT NULL PRIMARY KEY,
+    bytes BLOB UNIQUE
+);
+'''
+
 create.tables = [
+    create.table.data,
 ]
 
 create.indexes = [
