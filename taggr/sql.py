@@ -23,6 +23,7 @@ create = SimpleNamespace()
 create.table = SimpleNamespace()
 create.index = SimpleNamespace()
 select = SimpleNamespace()
+select.tags = SimpleNamespace()
 insert = SimpleNamespace()
 
 pragma.encoding = \
