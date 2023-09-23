@@ -20,6 +20,8 @@ from types import SimpleNamespace
 
 pragma = SimpleNamespace()
 create = SimpleNamespace()
+create.table = SimpleNamespace()
+create.index = SimpleNamespace()
 select = SimpleNamespace()
 insert = SimpleNamespace()
 
@@ -36,4 +38,10 @@ PRAGMA foreign_keys = ON;
 pragma.all = [
     pragma.encoding,
     pragma.foreign_keys,
+]
+
+create.tables = [
+]
+
+create.indexes = [
 ]
