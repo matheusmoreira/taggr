@@ -20,5 +20,11 @@ from types import SimpleNamespace
 
 pragma = SimpleNamespace()
 
+pragma.encoding = \
+'''
+PRAGMA encoding = 'UTF-8';
+'''
+
 pragma.all = [
+    pragma.encoding,
 ]
