@@ -48,8 +48,18 @@ CREATE TABLE IF NOT EXISTS data (
 );
 '''
 
+create.table.tag = \
+'''
+CREATE TABLE IF NOT EXISTS tag (
+    parent_id INTEGER REFERENCES tag(id),
+    id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+'''
+
 create.tables = [
     create.table.data,
+    create.table.tag,
 ]
 
 create.indexes = [
