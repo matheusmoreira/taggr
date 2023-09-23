@@ -17,5 +17,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+import sqlite3
+
 class Taggr:
     pass
