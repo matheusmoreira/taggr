@@ -20,4 +20,12 @@
 import sqlite3
 
 class Taggr:
-    pass
+
+    def __init__(self, database):
+        self.database = database
+
+    def connect(self):
+        self.connection = sqlite3.connect(self.database)
+
+    def close(self):
+        self.connection.close()
