@@ -17,3 +17,8 @@
 #
 
 from types import SimpleNamespace
+
+pragma = SimpleNamespace()
+
+pragma.all = [
+]
