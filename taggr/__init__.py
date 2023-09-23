@@ -24,6 +24,13 @@ class Taggr:
     def __init__(self, database):
         self.database = database
 
+    def __enter__(self):
+        self.connect()
+        return self
+
+    def __exit__(self, exception_type, exception_value, exception_traceback):
+        self.close()
+
     def connect(self):
         self.connection = sqlite3.connect(self.database)
 
