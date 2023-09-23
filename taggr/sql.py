@@ -19,6 +19,9 @@
 from types import SimpleNamespace
 
 pragma = SimpleNamespace()
+create = SimpleNamespace()
+select = SimpleNamespace()
+insert = SimpleNamespace()
 
 pragma.encoding = \
 '''
