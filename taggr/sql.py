@@ -109,6 +109,11 @@ create.indexes = [
     create.index.unique_key_value_pair_for_data,
 ]
 
+select.tags.all = \
+'''
+SELECT * FROM tag;
+'''
+
 insert.data = \
 '''
 INSERT INTO data (bytes) VALUES (?);
