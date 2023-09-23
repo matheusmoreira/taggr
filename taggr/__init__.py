@@ -61,3 +61,9 @@ class Taggr:
 
     def insert_data(self, blob):
         return self.cursor().execute(sql.insert.data, blob)
+
+    def insert_tag(self, tag):
+        return self.cursor().execute(sql.insert.tag, tag)
+
+    def insert_tags(self, tags):
+        return self.cursor().executemany(sql.insert.tag, tags)
