@@ -114,6 +114,11 @@ select.tags.all = \
 SELECT * FROM tag;
 '''
 
+select.tags.root = \
+'''
+SELECT * FROM tag WHERE tag.parent_id IS NULL;
+'''
+
 insert.data = \
 '''
 INSERT INTO data (bytes) VALUES (?);
