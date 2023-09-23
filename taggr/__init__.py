@@ -58,3 +58,6 @@ class Taggr:
         cursor = self.cursor()
         for index in sql.create.indexes:
             cursor.execute(index)
+
+    def insert_data(self, blob):
+        return self.cursor().execute(sql.insert.data, blob)
