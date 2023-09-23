@@ -136,6 +136,23 @@ WITH RECURSIVE children (parent_id, id, name) AS (
 SELECT * FROM children;
 '''
 
+select.tags.parents = \
+'''
+WITH RECURSIVE parents (parent_id, id, name) AS (
+    SELECT tag.parent_id, tag.id, tag.name
+    FROM tag
+    WHERE tag.id = ?
+
+    UNION ALL
+
+    SELECT tag.parent_id, tag.id, tag.name
+    FROM tag
+    JOIN parents ON tag.id = parents.parent_id
+)
+
+SELECT * FROM parents;
+'''
+
 insert.data = \
 '''
 INSERT INTO data (bytes) VALUES (?);
