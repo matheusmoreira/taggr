@@ -18,6 +18,7 @@
 #
 
 import sqlite3
+from . import sql
 
 class Taggr:
 
