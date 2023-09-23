@@ -67,3 +67,9 @@ class Taggr:
 
     def insert_tags(self, tags):
         return self.cursor().executemany(sql.insert.tag, tags)
+
+    def insert_metadata(self, metadata):
+        return self.cursor().execute(sql.insert.data_tag, metadata)
+
+    def insert_metadatas(self, metadatas):
+        return self.cursor().executemany(sql.insert.data_tag, metadatas)
