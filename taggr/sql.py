@@ -25,6 +25,12 @@ pragma.encoding = \
 PRAGMA encoding = 'UTF-8';
 '''
 
+pragma.foreign_keys = \
+'''
+PRAGMA foreign_keys = ON;
+'''
+
 pragma.all = [
     pragma.encoding,
+    pragma.foreign_keys,
 ]
