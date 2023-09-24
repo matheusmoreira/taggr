@@ -41,10 +41,16 @@ pragma.trusted_schema = \
 PRAGMA trusted_schema = OFF;
 '''
 
+pragma.synchronous = \
+'''
+PRAGMA synchronous = EXTRA;
+'''
+
 pragma.all = [
     pragma.encoding,
     pragma.foreign_keys,
     pragma.trusted_schema,
+    pragma.synchronous,
 ]
 
 create.table.data = \
