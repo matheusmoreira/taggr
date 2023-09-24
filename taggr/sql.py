@@ -46,11 +46,17 @@ pragma.synchronous = \
 PRAGMA synchronous = EXTRA;
 '''
 
+pragma.secure_delete = \
+'''
+PRAGMA secure_delete = ON;
+'''
+
 pragma.all = [
     pragma.encoding,
     pragma.foreign_keys,
     pragma.trusted_schema,
     pragma.synchronous,
+    pragma.secure_delete,
 ]
 
 create.table.data = \
