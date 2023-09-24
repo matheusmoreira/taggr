@@ -155,15 +155,18 @@ SELECT * FROM parents;
 
 insert.data = \
 '''
-INSERT INTO data (bytes) VALUES (?);
+INSERT INTO data (bytes) VALUES (?)
+RETURNING data.id;
 '''
 
 insert.tag = \
 '''
-INSERT INTO tag (name, parent_id) VALUES (?, ?);
+INSERT INTO tag (name, parent_id) VALUES (?, ?)
+RETURNING tag.id;
 '''
 
 insert.data_tag = \
 '''
-INSERT INTO data_tag (data_id, tag_id, value) VALUES (?, ?, ?);
+INSERT INTO data_tag (data_id, tag_id, value) VALUES (?, ?, ?)
+RETURNING data_tag.id;
 '''
