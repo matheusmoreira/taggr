@@ -60,16 +60,16 @@ class Taggr:
             cursor.execute(index)
 
     def insert_data(self, blob=None):
-        return self.cursor().execute(sql.insert.data, (blob,))
+        return self.cursor().execute(sql.insert.data, (blob,)).fetchone()
 
     def insert_tag(self, tag):
-        return self.cursor().execute(sql.insert.tag, tag)
+        return self.cursor().execute(sql.insert.tag, tag).fetchone()
 
     def insert_tags(self, tags):
         return self.cursor().executemany(sql.insert.tag, tags)
 
     def insert_metadata(self, metadata):
-        return self.cursor().execute(sql.insert.data_tag, metadata)
+        return self.cursor().execute(sql.insert.data_tag, metadata).fetchone()
 
     def insert_metadatas(self, metadatas):
         return self.cursor().executemany(sql.insert.data_tag, metadatas)
