@@ -51,6 +51,11 @@ pragma.secure_delete = \
 PRAGMA secure_delete = ON;
 '''
 
+pragma.optimize = \
+'''
+PRAGMA optimize;
+'''
+
 pragma.all = [
     pragma.encoding,
     pragma.foreign_keys,

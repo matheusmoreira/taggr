@@ -32,6 +32,7 @@ class Taggr:
         return self
 
     def __exit__(self, exception_type, exception_value, exception_traceback):
+        self.connection.execute(sql.pragma.optimize)
         self.close()
 
     def connect(self):
