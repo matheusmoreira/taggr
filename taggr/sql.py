@@ -45,7 +45,7 @@ create.table.data = \
 '''
 CREATE TABLE IF NOT EXISTS data (
     id INTEGER NOT NULL PRIMARY KEY,
-    bytes BLOB UNIQUE
+    bytes BLOB
 );
 '''
 
