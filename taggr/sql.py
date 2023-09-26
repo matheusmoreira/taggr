@@ -188,17 +188,20 @@ SELECT * FROM parents;
 insert.data = \
 '''
 INSERT INTO data (bytes) VALUES (?)
+ON CONFLICT DO UPDATE SET updated_at = CURRENT_TIMESTAMP
 RETURNING data.id;
 '''
 
 insert.tag = \
 '''
 INSERT INTO tag (name, parent_id) VALUES (?, ?)
+ON CONFLICT DO UPDATE SET updated_at = CURRENT_TIMESTAMP
 RETURNING tag.id;
 '''
 
 insert.data_tag = \
 '''
 INSERT INTO data_tag (data_id, tag_id, value) VALUES (?, ?, ?)
+ON CONFLICT DO UPDATE SET updated_at = CURRENT_TIMESTAMP
 RETURNING data_tag.id;
 '''
