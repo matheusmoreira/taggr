@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taggr"
+version = "0.1.0"
+authors = [
+  { name="Matheus Afonso Martins Moreira", email="matheus.a.m.moreira@gmail.com" },
+]
+description = "Tag anything with hierarchical tags and key/value pairs"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Development Status :: 1 - Planning",
+    "Topic :: Database :: Front-Ends",
+    "Topic :: Utilities",
+    "Topic :: Other/Nonlisted Topic",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+]
+
+[project.urls]
+"Repository" = "https://github.com/matheusmoreira/taggr"
+"Issues" = "https://github.com/matheusmoreira/taggr/issues"
