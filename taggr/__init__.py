@@ -18,7 +18,7 @@
 #
 
 import sqlite3
-from . import sql
+from taggr import sql
 
 class Taggr:
 
