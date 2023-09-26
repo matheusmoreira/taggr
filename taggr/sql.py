@@ -156,7 +156,7 @@ select.tags.children = \
 WITH RECURSIVE children (parent_id, id, name) AS (
     SELECT tag.parent_id, tag.id, tag.name
     FROM tag
-    WHERE tag.id = ?
+    WHERE tag.id = $1
 
     UNION ALL
 
@@ -173,7 +173,7 @@ select.tags.parents = \
 WITH RECURSIVE parents (parent_id, id, name) AS (
     SELECT tag.parent_id, tag.id, tag.name
     FROM tag
-    WHERE tag.id = ?
+    WHERE tag.id = $1
 
     UNION ALL
 
@@ -187,21 +187,21 @@ SELECT * FROM parents;
 
 insert.data = \
 '''
-INSERT INTO data (bytes) VALUES (?)
+INSERT INTO data (bytes) VALUES ($1)
 ON CONFLICT DO UPDATE SET updated_at = CURRENT_TIMESTAMP
 RETURNING data.id;
 '''
 
 insert.tag = \
 '''
-INSERT INTO tag (name, parent_id) VALUES (?, ?)
+INSERT INTO tag (name, parent_id) VALUES ($1, $2)
 ON CONFLICT DO UPDATE SET updated_at = CURRENT_TIMESTAMP
 RETURNING tag.id;
 '''
 
 insert.data_tag = \
 '''
-INSERT INTO data_tag (data_id, tag_id, value) VALUES (?, ?, ?)
+INSERT INTO data_tag (data_id, tag_id, value) VALUES ($1, $2, $3)
 ON CONFLICT DO UPDATE SET updated_at = CURRENT_TIMESTAMP
 RETURNING data_tag.id;
 '''
