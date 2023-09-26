@@ -68,7 +68,10 @@ create.table.data = \
 '''
 CREATE TABLE IF NOT EXISTS data (
     id INTEGER NOT NULL PRIMARY KEY,
-    bytes BLOB
+    bytes BLOB,
+
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 '''
 
@@ -77,7 +80,10 @@ create.table.tag = \
 CREATE TABLE IF NOT EXISTS tag (
     parent_id INTEGER REFERENCES tag(id),
     id INTEGER NOT NULL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 '''
 
@@ -87,7 +93,10 @@ CREATE TABLE IF NOT EXISTS data_tag (
     id INTEGER NOT NULL PRIMARY KEY,
     data_id INTEGER NOT NULL REFERENCES data(id),
     tag_id INTEGER NOT NULL REFERENCES tag(id),
-    value
+    value,
+
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 '''
 
