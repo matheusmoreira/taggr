@@ -21,6 +21,18 @@ import sqlite3
 from taggr import sql
 
 class Taggr:
+    class Transaction:
+        def __init__(self, connection):
+            self.connection = connection
+
+        def __enter__(self):
+            self.connection.execute(sql.transaction.begin)
+
+        def __exit__(self, exception_type, exception_value, exception_traceback):
+            if exception_value is None:
+                self.connection.execute(sql.transaction.commit)
+            else:
+                self.connection.execute(sql.transaction.rollback)
 
     def __init__(self, database):
         self.database = database
