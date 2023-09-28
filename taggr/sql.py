@@ -19,6 +19,7 @@
 from types import SimpleNamespace
 
 pragma = SimpleNamespace()
+transaction = SimpleNamespace()
 create = SimpleNamespace()
 create.table = SimpleNamespace()
 create.index = SimpleNamespace()
@@ -63,6 +64,21 @@ pragma.all = [
     pragma.synchronous,
     pragma.secure_delete,
 ]
+
+transaction.begin = \
+'''
+BEGIN;
+'''
+
+transaction.commit = \
+'''
+COMMIT;
+'''
+
+transaction.rollback = \
+'''
+ROLLBACK;
+'''
 
 create.table.data = \
 '''
