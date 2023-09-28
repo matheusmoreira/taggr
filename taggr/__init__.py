@@ -54,6 +54,9 @@ class Taggr:
     def close(self):
         self.connection.close()
 
+    def transaction(self):
+        return Taggr.Transaction(self.connection)
+
     def cursor(self):
         return self.connection.cursor()
 
