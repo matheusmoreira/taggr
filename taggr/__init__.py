@@ -39,8 +39,9 @@ class Taggr:
 
     def __enter__(self):
         self.connect()
-        self.create_tables()
-        self.create_indexes()
+        with self.transaction():
+            self.create_tables()
+            self.create_indexes()
         return self
 
     def __exit__(self, exception_type, exception_value, exception_traceback):
