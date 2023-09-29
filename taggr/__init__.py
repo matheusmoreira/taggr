@@ -76,14 +76,17 @@ class Taggr:
         for index in sql.create.indexes:
             cursor.execute(index)
 
+    def insert_and_fetch_id(self, insert_statement, row):
+        return self.cursor().execute(insert_statement, row).fetchone()[0]
+
     def insert_data(self, blob=None):
-        return self.cursor().execute(sql.insert.data, (blob,)).fetchone()[0]
+        return self.insert_and_fetch_id(sql.insert.data, (blob,))
 
     def insert_tag(self, tag):
-        return self.cursor().execute(sql.insert.tag, tag).fetchone()[0]
+        return self.insert_and_fetch_id(sql.insert.tag, tag)
 
     def insert_metadata(self, metadata):
-        return self.cursor().execute(sql.insert.data_tag, metadata).fetchone()[0]
+        return self.insert_and_fetch_id(sql.insert.data_tag, metadata)
 
     def select_all_tags(self):
         return self.cursor().execute(sql.select.tags.all)
