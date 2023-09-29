@@ -22,7 +22,7 @@ from taggr import Taggr
 def insert_tags(taggr, arguments):
     with taggr.transaction():
         for tag in arguments.tags:
-            taggr.insert_tag((tag, None))
+            taggr.insert_tag(tag)
 
 def cli(arguments):
     with Taggr(arguments.database) as taggr:

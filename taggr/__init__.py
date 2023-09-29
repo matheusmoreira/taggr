@@ -82,8 +82,8 @@ class Taggr:
     def insert_data(self, blob=None):
         return self.insert_and_fetch_id(sql.insert.data, (blob,))
 
-    def insert_tag(self, tag):
-        return self.insert_and_fetch_id(sql.insert.tag, tag)
+    def insert_tag(self, name, parent=None):
+        return self.insert_and_fetch_id(sql.insert.tag, (name, parent))
 
     def insert_metadata(self, metadata):
         return self.insert_and_fetch_id(sql.insert.data_tag, metadata)
