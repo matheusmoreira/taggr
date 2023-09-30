@@ -19,6 +19,9 @@
 
 from taggr import Taggr
 
+def split_nested(tag, separator='.'):
+    return tag.split(separator)
+
 def insert_tags(taggr, arguments):
     with taggr.transaction():
         for tag in arguments.tags:
