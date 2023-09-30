@@ -25,7 +25,10 @@ def split_nested(tag, separator='.'):
 def insert_tags(taggr, arguments):
     with taggr.transaction():
         for tag in arguments.tags:
-            taggr.insert_tag(tag)
+            components = split_nested(tag)
+            last = None
+            for component in components:
+                last = taggr.insert_tag(component, last)
 
 def cli(arguments):
     with Taggr(arguments.database) as taggr:
