@@ -187,9 +187,11 @@ SELECT * FROM children;
 select.tags.parents = \
 '''
 WITH RECURSIVE parents (parent_id, id, name) AS (
-    SELECT tag.parent_id, tag.id, tag.name
-    FROM tag
-    WHERE tag.id = $1
+    SELECT parent.parent_id, parent.id, parent.name
+    FROM tag parent
+    JOIN tag child
+    ON parent.id = child.parent_id
+    WHERE child.id = $1
 
     UNION ALL
 
