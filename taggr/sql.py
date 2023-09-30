@@ -172,7 +172,7 @@ select.tags.children = \
 WITH RECURSIVE children (parent_id, id, name) AS (
     SELECT tag.parent_id, tag.id, tag.name
     FROM tag
-    WHERE tag.id = $1
+    WHERE tag.parent_id = $1
 
     UNION ALL
 
