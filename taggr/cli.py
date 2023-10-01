@@ -76,7 +76,7 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument(
     'database',
-    help='the metadata database to work with'
+    help='metadata database to work with'
 )
 
 subparsers = parser.add_subparsers(
@@ -118,7 +118,7 @@ insert_data_command.add_argument(
     type=int,
     default=None,
     required=False,
-    help='the I/O buffer size in bytes',
+    help='I/O buffer size in bytes',
     metavar='SIZE'
 )
 
@@ -135,5 +135,5 @@ insert_tags_command.add_argument(
     'tags',
     metavar='tag',
     nargs='+',
-    help='the tag to insert'
+    help='tag to insert'
 )
