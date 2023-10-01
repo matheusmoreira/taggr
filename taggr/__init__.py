@@ -76,6 +76,9 @@ class Taggr:
         for index in sql.create.indexes:
             cursor.execute(index)
 
+    def open_data_blob(self, data_id, *arguments, **keywords):
+        return self.connection.blobopen('data', 'bytes', data_id, *arguments, *keywords)
+
     def insert_and_fetch_id(self, insert_statement, row):
         return self.cursor().execute(insert_statement, row).fetchone()[0]
 
