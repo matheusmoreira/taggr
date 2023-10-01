@@ -35,13 +35,16 @@ def determine_stream_size(file):
 def split_nested(tag, separator='.'):
     return tag.split(separator)
 
+def insert_nested(taggr, tag):
+    components = split_nested(tag)
+    last = None
+    for component in components:
+        last = taggr.insert_tag(component, last)
+
 def insert_tags(taggr, arguments):
     with taggr.transaction():
         for tag in arguments.tags:
-            components = split_nested(tag)
-            last = None
-            for component in components:
-                last = taggr.insert_tag(component, last)
+            insert_nested(taggr, tag)
 
 def insert_data(taggr, arguments):
     with taggr.transaction():
