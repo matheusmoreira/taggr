@@ -17,7 +17,19 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+import os
+
 from taggr import Taggr
+
+def determine_stream_size(file):
+    if file.seekable():
+        original_position = file.tell()
+        file.seek(0, os.SEEK_END)
+        size = file.tell()
+        file.seek(original_position, os.SEEK_SET)
+        return size
+    else:
+        return None
 
 def split_nested(tag, separator='.'):
     return tag.split(separator)
