@@ -10,7 +10,7 @@ authors = [
 ]
 description = "Tag anything with hierarchical tags and key/value pairs"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
