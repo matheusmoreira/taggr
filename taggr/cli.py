@@ -54,7 +54,7 @@ def insert_data(taggr, arguments):
             else:
                 data_id = taggr.insert_data(size=size)
                 with taggr.open_data_blob(data_id) as blob:
-                    shutil.copyfileobj(file, blob)
+                    shutil.copyfileobj(file, blob, arguments.buffer_size)
 
 def cli(arguments):
     with Taggr(arguments.database) as taggr:
@@ -109,6 +109,14 @@ insert_data_command.add_argument(
     'file',
     type=argparse.FileType('rb'),
     help='path to file or "-" for standard input'
+)
+insert_data_command.add_argument(
+    '--buffer-size',
+    type=int,
+    default=None,
+    required=False,
+    help='the I/O buffer size in bytes',
+    metavar='SIZE'
 )
 
 insert_tags_command = insert_subparsers.add_parser(
