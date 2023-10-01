@@ -26,6 +26,7 @@ create.index = SimpleNamespace()
 select = SimpleNamespace()
 select.tags = SimpleNamespace()
 insert = SimpleNamespace()
+insert.data = SimpleNamespace()
 
 pragma.encoding = \
 '''
@@ -203,12 +204,15 @@ WITH RECURSIVE parents (parent_id, id, name) AS (
 SELECT * FROM parents;
 '''
 
-insert.data = \
+insert.data.template = \
 '''
-INSERT INTO data (bytes) VALUES ($1)
+INSERT INTO data (bytes) VALUES ({})
 ON CONFLICT DO UPDATE SET updated_at = CURRENT_TIMESTAMP
 RETURNING data.id;
 '''
+
+insert.data.directly = insert.data.template.format('$1')
+insert.data.zeroed = insert.data.template.format('zeroblob($1)')
 
 insert.tag = \
 '''

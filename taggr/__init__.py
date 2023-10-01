@@ -83,7 +83,7 @@ class Taggr:
         return self.cursor().execute(insert_statement, row).fetchone()[0]
 
     def insert_data(self, blob=None):
-        return self.insert_and_fetch_id(sql.insert.data, (blob,))
+        return self.insert_and_fetch_id(sql.insert.data.directly, (blob,))
 
     def insert_tag(self, name, parent=None):
         return self.insert_and_fetch_id(sql.insert.tag, (name, parent))
