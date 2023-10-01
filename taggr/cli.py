@@ -97,6 +97,20 @@ insert_subparsers = insert_command.add_subparsers(
     required=True
 )
 
+insert_data_command = insert_subparsers.add_parser(
+    'data',
+    description='Insert data into the database.',
+    help='Insert data'
+)
+insert_data_command.set_defaults(
+    function=insert_data
+)
+insert_data_command.add_argument(
+    'file',
+    type=argparse.FileType('rb'),
+    help='path to file or "-" for standard input'
+)
+
 insert_tags_command = insert_subparsers.add_parser(
     'tag',
     aliases=['tags'],
