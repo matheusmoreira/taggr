@@ -18,6 +18,7 @@
 #
 
 import os
+import shutil
 
 from taggr import Taggr
 
@@ -41,6 +42,19 @@ def insert_tags(taggr, arguments):
             last = None
             for component in components:
                 last = taggr.insert_tag(component, last)
+
+def insert_data(taggr, arguments):
+    with taggr.transaction():
+        with arguments.file as file:
+            size = determine_stream_size(file)
+            if size is None:
+                # couldn't calculate size, stream not seekable
+                # gonna have to read entire thing into memory
+                data_id = taggr.insert_data(file.read())
+            else:
+                data_id = taggr.insert_data(size=size)
+                with taggr.open_data_blob(data_id) as blob:
+                    shutil.copyfileobj(file, blob)
 
 def cli(arguments):
     with Taggr(arguments.database) as taggr:
