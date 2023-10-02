@@ -113,11 +113,15 @@ def insert_data(taggr, arguments):
             if size is None:
                 # couldn't calculate size, stream not seekable
                 # gonna have to read entire thing into memory
-                data_id = taggr.insert_data(file.read())
+                contents = file.read()
+                data_id = taggr.insert_data(contents)
+                submit_data_for_hashing(threads, contents, None)
             else:
                 data_id = taggr.insert_data(size=size)
                 with taggr.open_data_blob(data_id) as blob:
                     shutil.copyfileobj(file, blob, arguments.buffer_size)
+
+            hashes = collect_hashes(threads)
 
 def cli(arguments):
     with Taggr(arguments.database) as taggr:
