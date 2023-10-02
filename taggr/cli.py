@@ -107,7 +107,9 @@ def insert_tags(taggr, arguments):
 def insert_data(taggr, arguments):
     with taggr.transaction():
         with arguments.file as file:
+            threads = create_hashing_threads_for(arguments.hash_functions)
             size = determine_stream_size(file)
+
             if size is None:
                 # couldn't calculate size, stream not seekable
                 # gonna have to read entire thing into memory
