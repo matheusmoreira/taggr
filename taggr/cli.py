@@ -125,6 +125,9 @@ def insert_data(taggr, arguments):
                     submit_data_for_hashing(threads, None)
 
             hashes = collect_hashes(threads)
+            for function, hash in hashes.items():
+                tag_id = insert_nested(taggr, hash_function.hashlib_to_tag[function])
+                taggr.insert_metadata(data_id, tag_id, hash.digest())
 
 def cli(arguments):
     with Taggr(arguments.database) as taggr:
