@@ -20,6 +20,8 @@
 import os
 import shutil
 import hashlib
+from threading import Thread
+from queue import Queue
 from types import SimpleNamespace
 
 from taggr import Taggr
@@ -49,6 +51,21 @@ def hash_function_applicator(function, input, output):
         hash.update(data)
         input.task_done()
     output.put(hash)
+
+def create_hashing_threads_for(functions):
+    threads = {}
+
+    for function in functions:
+        input, output = Queue(), Queue()
+        target = hash_function_applicator
+        arguments = (function, input, output)
+        name = f'Thread hash_function_applicator({function})'
+
+        thread = Thread(target=target, args=arguments, name=name)
+        thread.start()
+        threads[function] = (thread, input, output)
+
+    return threads
 
 def determine_stream_size(file):
     if file.seekable():
