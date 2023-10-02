@@ -165,7 +165,7 @@ SELECT * FROM tag;
 
 select.tags.root = \
 '''
-SELECT * FROM tag WHERE tag.parent_id IS NULL;
+SELECT parent_id, id, name FROM tag WHERE tag.parent_id IS NULL;
 '''
 
 select.tags.children = \
