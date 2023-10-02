@@ -72,6 +72,14 @@ def submit_data_for_hashing(threads, *objects):
         for function, (thread, input, output) in threads.items():
             input.put(data)
 
+def collect_hashes(threads):
+    hashes = {}
+
+    for function, (thread, input, output) in threads.items():
+        hashes[function] = output.get()
+
+    return hashes
+
 def determine_stream_size(file):
     if file.seekable():
         original_position = file.tell()
