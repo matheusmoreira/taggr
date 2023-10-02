@@ -18,7 +18,6 @@
 #
 
 import os
-import shutil
 import hashlib
 from threading import Thread
 from queue import Queue
@@ -119,7 +118,10 @@ def insert_data(taggr, arguments):
             else:
                 data_id = taggr.insert_data(size=size)
                 with taggr.open_data_blob(data_id) as blob:
-                    shutil.copyfileobj(file, blob, arguments.buffer_size)
+                    while chunk := file.read(arguments.buffer_size):
+                        blob.write(chunk)
+                        submit_data_for_hashing(threads, chunk)
+                    submit_data_for_hashing(threads, None)
 
             hashes = collect_hashes(threads)
 
