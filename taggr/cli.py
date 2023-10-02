@@ -19,8 +19,26 @@
 
 import os
 import shutil
+from types import SimpleNamespace
 
 from taggr import Taggr
+
+hash_function = SimpleNamespace()
+
+hash_function.hashlib_to_tag = {
+    'md5':        'MD5',
+    'sha1':       'SHA.1',
+    'sha224':     'SHA.2.224',
+    'sha256':     'SHA.2.256',
+    'sha384':     'SHA.2.384',
+    'sha512':     'SHA.2.512',
+    'sha512_224': 'SHA.2.512.224',
+    'sha512_256': 'SHA.2.512.256',
+    'sha3_224':   'SHA.3.224',
+    'sha3_256':   'SHA.3.256',
+    'sha3_384':   'SHA.3.384',
+    'sha3_512'  : 'SHA.3.512',
+}
 
 def determine_stream_size(file):
     if file.seekable():
