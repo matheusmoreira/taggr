@@ -43,6 +43,13 @@ hash_function.hashlib_to_tag = {
 
 hash_function.choices = hashlib.algorithms_available.intersection(set(hash_function.hashlib_to_tag))
 
+def hash_function_applicator(function, input, output):
+    hash = hashlib.new(function)
+    while (data := input.get()) is not None:
+        hash.update(data)
+        input.task_done()
+    output.put(hash)
+
 def determine_stream_size(file):
     if file.seekable():
         original_position = file.tell()
