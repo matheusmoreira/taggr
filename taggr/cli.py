@@ -97,6 +97,7 @@ def insert_nested(taggr, tag):
     last = None
     for component in components:
         last = taggr.insert_tag(component, last)
+    return last
 
 def insert_tags(taggr, arguments):
     with taggr.transaction():
