@@ -160,7 +160,7 @@ create.indexes = [
 
 select.tags.all = \
 '''
-SELECT * FROM tag;
+SELECT parent_id, id, name FROM tag;
 '''
 
 select.tags.root = \
