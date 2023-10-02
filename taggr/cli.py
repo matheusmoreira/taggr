@@ -220,6 +220,8 @@ insert_tags_command.add_argument(
 )
 
 def preprocess_arguments(arguments):
-    if not arguments.hash_functions:
-        arguments.hash_functions.append('sha256')
+    if hasattr(arguments, 'hash_function'):
+        if not arguments.hash_functions:
+            arguments.hash_functions.append('sha256')
+
     return arguments
