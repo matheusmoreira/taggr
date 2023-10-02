@@ -39,7 +39,7 @@ hash_function.hashlib_to_tag = {
     'sha3_224':   'SHA.3.224',
     'sha3_256':   'SHA.3.256',
     'sha3_384':   'SHA.3.384',
-    'sha3_512'  : 'SHA.3.512',
+    'sha3_512':   'SHA.3.512',
 }
 
 hash_function.choices = hashlib.algorithms_available.intersection(set(hash_function.hashlib_to_tag))
