@@ -134,7 +134,8 @@ def cli(arguments):
         arguments.function(taggr, arguments)
 
 def main():
-    cli(parser.parse_args())
+    arguments = preprocess_arguments(parser.parse_args())
+    cli(arguments)
 
 import argparse
 
@@ -195,7 +196,7 @@ insert_data_command.add_argument(
     '-H', '--hash',
     dest='hash_functions',
     action='append',
-    default=['sha256'],
+    default=[], # sha256
     choices=hash_function.choices,
     required=False,
     help='hash function to apply to the data',
@@ -217,3 +218,8 @@ insert_tags_command.add_argument(
     nargs='+',
     help='tag to insert'
 )
+
+def preprocess_arguments(arguments):
+    if not arguments.hash_functions:
+        arguments.hash_functions.append('sha256')
+    return arguments
