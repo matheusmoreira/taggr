@@ -99,8 +99,8 @@ class Taggr:
     def insert_tag(self, name, parent=None):
         return self.insert_and_fetch_id(sql.insert.tag, (name, parent))
 
-    def insert_metadata(self, metadata):
-        return self.insert_and_fetch_id(sql.insert.data_tag, metadata)
+    def insert_metadata(self, data_id, tag_id, value=None):
+        return self.insert_and_fetch_id(sql.insert.data_tag, (data_id, tag_id, value))
 
     def select_all_tags(self):
         return self.cursor().execute(sql.select.tags.all)
