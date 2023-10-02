@@ -181,6 +181,16 @@ insert_data_command.add_argument(
     help='I/O buffer size in bytes',
     metavar='SIZE'
 )
+insert_data_command.add_argument(
+    '-H', '--hash',
+    dest='hash_functions',
+    action='append',
+    default=['sha256'],
+    choices=hash_function.choices,
+    required=False,
+    help='hash function to apply to the data',
+    metavar='FUNCTION'
+)
 
 insert_tags_command = insert_subparsers.add_parser(
     'tag',
