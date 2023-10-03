@@ -129,6 +129,12 @@ def insert_data(taggr, arguments):
                 tag_id = insert_nested(taggr, hash_function.hashlib_to_tag[function])
                 taggr.insert_metadata(data_id, tag_id, hash.digest())
 
+def list_tags(taggr, arguments):
+    for (none, root_tag_id, root_tag_name) in taggr.select_root_tags():
+        for (parent_id, id, name), depth in taggr.walk(root_tag_id):
+            indent = '\t' * depth
+            print(f'{indent}{name}')
+
 def cli(arguments):
     with Taggr(arguments.database) as taggr:
         arguments.function(taggr, arguments)
