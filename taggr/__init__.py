@@ -122,3 +122,11 @@ class Taggr:
 
     def select_ancestors_of(self, tag_id):
         return self.cursor().execute(sql.select.tags.ancestors, (tag_id,))
+
+    def walk(self, tag_id):
+        def walk_tag(self, tag, depth=0):
+            yield tag, depth
+            for child in self.select_children_of(tag[1]):
+                yield from walk_tag(self, child, depth + 1)
+
+        yield from walk_tag(self, self.select_tag(tag_id))
