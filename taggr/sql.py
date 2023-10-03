@@ -190,6 +190,15 @@ WITH RECURSIVE descendants (parent_id, id, name) AS (
 SELECT * FROM descendants;
 '''
 
+select.tags.parent = \
+'''
+SELECT parent.parent_id, parent.id, parent.name
+FROM tag parent
+JOIN tag child
+ON parent.id = child.parent_id
+WHERE child.id = $1;
+'''
+
 select.tags.ancestors = \
 '''
 WITH RECURSIVE ancestors (parent_id, id, name) AS (

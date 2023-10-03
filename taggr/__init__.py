@@ -114,5 +114,8 @@ class Taggr:
     def select_descendants_of(self, tag_id):
         return self.cursor().execute(sql.select.tags.descendants, (tag_id,))
 
+    def select_parent_of(self, tag_id):
+        return self.cursor().execute(sql.select.tags.parent, (tag_id,))
+
     def select_ancestors_of(self, tag_id):
         return self.cursor().execute(sql.select.tags.ancestors, (tag_id,))
