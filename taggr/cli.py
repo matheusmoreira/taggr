@@ -130,7 +130,12 @@ def insert_data(taggr, arguments):
                 taggr.insert_metadata(data_id, tag_id, hash.digest())
 
 def list_tags(taggr, arguments):
-    for (none, root_tag_id, root_tag_name) in taggr.select_root_tags():
+    if arguments.tags:
+        roots = arguments.tags
+    else:
+        roots = [id for (parent_id, id, name) in taggr.select_root_tags()]
+
+    for root_tag_id in roots:
         for (parent_id, id, name), depth in taggr.walk(root_tag_id):
             indent = '\t' * depth
             print(f'{indent}{name}')
@@ -186,6 +191,12 @@ list_tags_command = list_subparsers.add_parser(
 )
 list_tags_command.set_defaults(
     function=list_tags
+)
+list_tags_command.add_argument(
+    'tags',
+    nargs='*',
+    help='the tag to list',
+    metavar='tag'
 )
 
 insert_command = subparsers.add_parser(
