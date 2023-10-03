@@ -168,9 +168,9 @@ select.tags.root = \
 SELECT parent_id, id, name FROM tag WHERE tag.parent_id IS NULL;
 '''
 
-select.tags.children = \
+select.tags.descendants = \
 '''
-WITH RECURSIVE children (parent_id, id, name) AS (
+WITH RECURSIVE descendants (parent_id, id, name) AS (
     SELECT tag.parent_id, tag.id, tag.name
     FROM tag
     WHERE tag.parent_id = $1
@@ -179,10 +179,10 @@ WITH RECURSIVE children (parent_id, id, name) AS (
 
     SELECT tag.parent_id, tag.id, tag.name
     FROM tag
-    JOIN children ON children.id = tag.parent_id
+    JOIN descendants ON descendants.id = tag.parent_id
 )
 
-SELECT * FROM children;
+SELECT * FROM descendants;
 '''
 
 select.tags.parents = \
