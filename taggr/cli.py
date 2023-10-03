@@ -178,6 +178,16 @@ list_subparsers = list_command.add_subparsers(
     required=True
 )
 
+list_tags_command = list_subparsers.add_parser(
+    'tags',
+    aliases=['tag'],
+    description='List tags from the database.',
+    help='list tags'
+)
+list_tags_command.set_defaults(
+    function=list_tags
+)
+
 insert_command = subparsers.add_parser(
     'insert',
     description='Insert data or metadata into the database.',
