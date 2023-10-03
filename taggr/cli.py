@@ -164,6 +164,20 @@ subparsers = parser.add_subparsers(
     required=True
 )
 
+list_command = subparsers.add_parser(
+    'list',
+    aliases=['ls'],
+    description='Browse the data and metadata contained in the database.',
+    help='list data or metadata'
+)
+list_subparsers = list_command.add_subparsers(
+    title='listing commands',
+    metavar='list-command',
+    description='What kind of data or metadata to list.',
+    dest='list',
+    required=True
+)
+
 insert_command = subparsers.add_parser(
     'insert',
     description='Insert data or metadata into the database.',
