@@ -168,6 +168,11 @@ select.tags.root = \
 SELECT parent_id, id, name FROM tag WHERE tag.parent_id IS NULL;
 '''
 
+select.tags.children = \
+'''
+SELECT parent_id, id, name FROM tag WHERE tag.parent_id = $1;
+'''
+
 select.tags.descendants = \
 '''
 WITH RECURSIVE descendants (parent_id, id, name) AS (

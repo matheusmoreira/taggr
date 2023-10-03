@@ -108,6 +108,9 @@ class Taggr:
     def select_root_tags(self):
         return self.cursor().execute(sql.select.tags.root)
 
+    def select_children_of(self, tag_id):
+        return self.cursor().execute(sql.select.tags.children, (tag_id,))
+
     def select_descendants_of(self, tag_id):
         return self.cursor().execute(sql.select.tags.descendants, (tag_id,))
 
