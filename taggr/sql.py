@@ -158,6 +158,11 @@ create.indexes = [
     create.index.unique_key_value_pair_for_data,
 ]
 
+select.tags.one = \
+'''
+SELECT parent_id, id, name FROM tag WHERE tag.id = $1;
+'''
+
 select.tags.all = \
 '''
 SELECT parent_id, id, name FROM tag;
