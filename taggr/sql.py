@@ -185,9 +185,9 @@ WITH RECURSIVE descendants (parent_id, id, name) AS (
 SELECT * FROM descendants;
 '''
 
-select.tags.parents = \
+select.tags.ancestors = \
 '''
-WITH RECURSIVE parents (parent_id, id, name) AS (
+WITH RECURSIVE ancestors (parent_id, id, name) AS (
     SELECT parent.parent_id, parent.id, parent.name
     FROM tag parent
     JOIN tag child
@@ -198,10 +198,10 @@ WITH RECURSIVE parents (parent_id, id, name) AS (
 
     SELECT tag.parent_id, tag.id, tag.name
     FROM tag
-    JOIN parents ON tag.id = parents.parent_id
+    JOIN ancestors ON tag.id = ancestors.parent_id
 )
 
-SELECT * FROM parents;
+SELECT * FROM ancestors;
 '''
 
 insert.data.template = \
