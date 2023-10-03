@@ -137,7 +137,7 @@ def list_tags(taggr, arguments):
 
     for root_tag_id in roots:
         for (parent_id, id, name), depth in taggr.walk(root_tag_id):
-            indent = '\t' * depth
+            indent = arguments.tab * depth
             print(f'{indent}{name}')
 
 def cli(arguments):
@@ -197,6 +197,14 @@ list_tags_command.add_argument(
     nargs='*',
     help='the tag to list',
     metavar='tag'
+)
+list_tags_command.add_argument(
+    '--indent-with',
+    dest='tab',
+    default='\t',
+    required=False,
+    help='characters to use for indentation',
+    metavar='TEXT'
 )
 
 insert_command = subparsers.add_parser(
